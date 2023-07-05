@@ -378,7 +378,3 @@ print("{:x}".format(1010))
 print("{:.5}".format('这是一个很长的字符串'))
 print("{:-^10}".format('PYTHON'))
 
-# 12313
-# 213
-
-#车市

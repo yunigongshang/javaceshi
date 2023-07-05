@@ -378,3 +378,49 @@ print("{:x}".format(1010))
 print("{:.5}".format('这是一个很长的字符串'))
 print("{:-^10}".format('PYTHON'))
 
+
+#--------------------------------------------------------3.34
+'python 语言'+'程序设计'
+name='python 语言'+'程序设计'
+name
+'我爱python'*3
+'python' in name
+'Y' in name
+
+
+#--------------------------------------------------------3.35
+str(1010)
+str(0x3F)
+str(3.1415926)
+
+#--------------------------------------------------------3.36
+chr(1010)
+chr(10000)
+chr('和')
+chr('你')
+
+
+#--------------------------------------------------------3.37
+hex(1011)
+oct(-255)
+
+
+#--------------------------------------------------------3.38
+'python'.lower()
+'python'.upper()
+
+
+#--------------------------------------------------------3.39
+'python is an excellent language'.split()
+'python is an excellent language'.split('a')
+'python is an excellent language'.split('ge')
+'python is an excellent language'.split('an')
+
+#--------------------------------------------------------3.40
+'python is an excellent language'.count('a')
+'python is an excellent language'.count('an')
+
+
+#--------------------------------------------------------3.41
+'python is an excellent language'.replace('a','$')
+'python is an excellent language'.replace('python','C')

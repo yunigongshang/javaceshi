@@ -378,3 +378,30 @@ print("{:x}".format(1010))
 print("{:.5}".format('这是一个很长的字符串'))
 print("{:-^10}".format('PYTHON'))
 
+#--------------------------过滤敏感词----------------------
+s = ['笨蛋']  # 设置需过滤敏感词
+f = '我是小笨蛋' #原始文本
+print(f)
+for i in range(len(s)):
+    if s[i] in f:
+        f = f.replace(s[i],len(s[i])*'*')
+print(f)
+
+
+#------------------文字排版工具---------------------------
+text = input("请粘贴您需要转换的文本\n")
+function = int(input("请输入您想实现的功能:删除空格、中英文标点替换、英文单词功能大写、1/2/3/\n"))
+if function == 1:
+    new_text = text.replace(" ","")
+elif function==2:
+    new_text = text.replace("，",",")
+elif function==3:
+        print("文本首字母大写为")
+        new_text1 = text.capitalize()
+        print(new_text1)
+        print("文本内每个首字母大写")
+        new_text3 = text.title()
+        print(new_text3)
+        print("文本全部转换为大写为")
+        new_text = text.upper()
+print(new_text)

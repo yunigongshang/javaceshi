@@ -9,7 +9,7 @@ def sum():#求和   1
         sum +=i+1
     print("1到100的求和结果是：",sum)
 
-
+xuexishiyon
 def jiu():#九九乘法表  2
     for i in range(1,10) :
         for j in range(1,i+1):

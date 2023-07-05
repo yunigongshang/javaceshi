@@ -2,7 +2,7 @@ import random
 import turtle
 import math 
 import time
-
+aaaaaaaaaaaaaaaaaaa
 def sum():#求和   1
     sum=0
     for i in range(100):

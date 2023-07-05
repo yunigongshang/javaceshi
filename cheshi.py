@@ -2,26 +2,20 @@ import random
 import turtle
 import math 
 import time
-aaaaaaaaaaaaaaaaaaa
+
 def sum():#求和   1
     sum=0
     for i in range(100):
         sum +=i+1
     print("1到100的求和结果是：",sum)
 
-xuexishiyon
+
 def jiu():#九九乘法表  2
     for i in range(1,10) :
         for j in range(1,i+1):
             print("{}*{}={}".format(i,j,i*j),end=' ')
         print()
         
-xuexishiyon
-def www():#九九乘法表  2
-    for i in range(1,10) :
-        for j in range(1,i+1):
-            print("{}*{}={}".format(i,j,i*j),end=' ')
-        print()
 
 def jie():#阶乘    3
     sum=0;tmp=1

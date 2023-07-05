@@ -15,7 +15,13 @@ def jiu():#九九乘法表  2
         for j in range(1,i+1):
             print("{}*{}={}".format(i,j,i*j),end=' ')
         print()
-
+        
+xuexishiyon
+def www():#九九乘法表  2
+    for i in range(1,10) :
+        for j in range(1,i+1):
+            print("{}*{}={}".format(i,j,i*j),end=' ')
+        print()
 
 def jie():#阶乘    3
     sum=0;tmp=1

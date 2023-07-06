@@ -4,7 +4,7 @@
 // console.log(at)
 
 const fs =require('fs')
-fs.readFile('../学习.txt','utf8',function(err,dataStr){
+fs.readFile('./学习.txt','utf8',function(err,dataStr){
     if(err){
         return console.log('读取文件失败!'+err.message);
     }

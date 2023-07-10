@@ -338,6 +338,7 @@ s="等级考试"
 "{:+^25}".format(s)
 "{:^1}".format(s)
 
+
 #--------------------------------------------------------3.28
 s = '等级考试'
 y = '-'
@@ -367,6 +368,7 @@ print("{:o}".format(425))
 print("{:x}".format(425))
 print("{:X}".format(425))
 
+
 #--------------------------------------------------------3.32
 print("{:e},{:E},{:f},{:%}".format(3.14,3.14,3.14,3.14))
 print("{2e},{:2E},{:f},{:%}".format(3.14,3.14,3.14,3.14))
@@ -377,6 +379,7 @@ print("{:.2f}".format(3.1415926))
 print("{:x}".format(1010))
 print("{:.5}".format('这是一个很长的字符串'))
 print("{:-^10}".format('PYTHON'))
+
 
 #--------------------------过滤敏感词----------------------
 s = ['笨蛋']  # 设置需过滤敏感词
@@ -443,6 +446,7 @@ oct(-255)
 'python is an excellent language'.split('a')
 'python is an excellent language'.split('ge')
 'python is an excellent language'.split('an')
+
 
 #--------------------------------------------------------3.40
 'python is an excellent language'.count('a')

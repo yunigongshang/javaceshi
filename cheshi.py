@@ -2,6 +2,7 @@ import random
 import turtle
 import math 
 import time
+import numpy as np
 
 def sum():#求和   1
     sum=0
@@ -519,6 +520,30 @@ n.pop()
 print(f'该学生成绩总和:{sum(n) / len(n)}')
 
 
+
+# 创建一个5×5的空矩阵
+n=5
+su = np.zeros((n, n), dtype=int)
+
+s = n * (n ** 2 + 1) // 2
+
+i,j=0,n//2
+
+for a in range(1,26):
+    su[i][j]=a  
+    ni=(i-1)%n
+    nj=(j+1)%n
+    
+    if su[ni][nj]:
+        i = (i + 1) % n
+    else:
+        i, j = ni, nj
+
+for row in su:
+    print('\t'.join([str(x) for x in row]))
+print(f"\n每行、每列、主对角线、副对角线的和均为{s}")
+
+    
 #--------------------------------------------------------6.1.1
 x=[1,2,3]
 y={'name':'Sakura'}

@@ -69,8 +69,19 @@
 // req.end();
 
 const express = require('express');
+const bodyParse = require('body-parser')
 const app = express();
 const port =8084;
+app.use(bodyParse.urlencoded({extended:false}))
+app.use(bodyParse.json())
+
+app.use(express.static('puli'))
 app.get('/',(req,res)=> res.send('Hello world'));
 
-app.listen(port,()=> console.log(`Server listening on port ${port}`));
+app.post('/ent',(req,res)=>{
+    console.log(req.body)
+    res.send('post请求成功')
+})
+app.listen(port,()=> console.log(`http://localhost:${port}`))
+
+

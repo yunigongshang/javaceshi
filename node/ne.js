@@ -68,20 +68,34 @@
 // req.write(postData);
 // req.end();
 
-const express = require('express');
-const bodyParse = require('body-parser')
-const app = express();
-const port =8084;
-app.use(bodyParse.urlencoded({extended:false}))
-app.use(bodyParse.json())
+// const express = require('express');
+// const bodyParse = require('body-parser')
+// const app = express();
+// const port =8084;
+// app.use(bodyParse.urlencoded({extended:false}))
+// app.use(bodyParse.json())
 
-app.use(express.static('puli'))
-app.get('/',(req,res)=> res.send('Hello world'));
+// app.use(express.static('puli'))
+// app.get('/',(req,res)=> res.send('Hello world'));
 
-app.post('/ent',(req,res)=>{
-    console.log(req.body)
-    res.send('post请求成功')
+// app.post('/ent',(req,res)=>{
+//     console.log(req.body)
+//     res.send('post请求成功')
+// })
+// app.listen(port,()=> console.log(`http://localhost:${port}`))
+
+//======================================================================2023年7月12日
+const express = require('express')
+const app = express()
+app.get('/',function(req,res){
+    throw new Error('服务器内部发生了错误！')
+    res.send('Home Page.')
 })
-app.listen(port,()=> console.log(`http://localhost:${port}`))
+app.use(function (err,req,res,next){
+    console.log('发生了错误：'+ err.message)
+    res.send('Error!'+err.message)
+})
 
-
+app.listen(8083,()=>{
+    console.log('http://localhost:8083')
+})

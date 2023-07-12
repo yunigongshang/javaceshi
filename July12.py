@@ -1,5 +1,5 @@
 n={'z':'12123',
-    'c': '2313'}
+     'c': '2313'}
 while True:
     n1=list(n.keys())
     print('联系人列表')
@@ -170,3 +170,53 @@ x,y
 x&y
 x|y
 x-y
+#--------------------------------------------------------5.5
+def sum_and_avg(list):
+    sum=0
+    count=0
+    for e in list:
+        if isinstance(e,int) or isinstance(e,float):
+            count+=1
+            sum+=e
+    return sum,sum/count
+my_list=[15,12,18,'a',25,30]
+'''获取sum_and_avg函数返回的多个值，多个返回值被封装成元组'''
+tp=sum_and_avg(my_list)
+print(tp)
+
+
+#--------------------------------------------------------5.6
+a={'left':lambda:print("左"),'right':lambda:print("向右"),\
+'up':lambda:print("向上"),'down':lambda:print("向下")}
+b=input('请输入方向')
+if b in a:
+    a[b]()
+else:
+    print("不存在的指令")
+
+
+#--------------------------------------------------------5.7
+def say(name='python',time=3):
+    i=1
+    while i<=time:
+        print(name,end='')
+        i+=1
+    print()
+say()
+say('hello')
+say(5)
+say('hello',5)
+
+
+#--------------------------------------------------------5.8
+def greda(name,num,* scores):
+    print(name + ":",end='')
+    ave=0
+    for var in scores:
+        print(var,end='')
+        ave=ave+var
+    ave=ave/num
+    print('\n平均成绩为{:.2f}'.format(ave))
+greda('zhang',3,88,90,98)
+greda('Huang',4,92,96,95,69)
+

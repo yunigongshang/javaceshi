@@ -170,6 +170,50 @@ x,y
 x&y
 x|y
 x-y
+
+#--------------------------------------------------------5.1
+def show_hello():
+    '''定义一个函数,输出Hello World'''
+    print('Hello World')
+show_hello()
+print(show_hello.__doc__)
+
+
+#--------------------------------------------------------5.2
+def fid(n):
+    '''打印斐波那契列前n列'''
+    a,b=1,2
+    flag=1
+    while flag<=n:
+        print(a,end=' ')
+        a,b=b,a+b
+        flag+=1
+fid(10)
+
+
+#--------------------------------------------------------5.3
+def printHello():
+    print('Hello Python')
+for i in range(1,4,1):
+    printHello()
+
+
+#--------------------------------------------------------5.4
+mark=eval(input("请输入学生成绩:"))
+def grade(mark):
+    if mark>=90:
+        return "优秀"
+    elif mark>=80:
+        return "良好"
+    elif mark>=70:
+        return "中等"
+    elif mark>=60:
+        return "及格"
+    else:
+        return "不及格"
+print(grade(mark))
+
+
 #--------------------------------------------------------5.5
 def sum_and_avg(list):
     sum=0
@@ -220,3 +264,46 @@ def greda(name,num,* scores):
 greda('zhang',3,88,90,98)
 greda('Huang',4,92,96,95,69)
 
+
+
+#--------------------------------------------------------5.1
+def show_hello():
+    '''定义一个函数,输出Hello World'''
+    print('Hello World')
+show_hello()
+print(show_hello.__doc__)
+
+
+#--------------------------------------------------------5.2
+def fid(n):
+    '''打印斐波那契列前n列'''
+    a,b=1,2
+    flag=1
+    while flag<=n:
+        print(a,end=' ')
+        a,b=b,a+b
+        flag+=1
+fid(10)
+
+
+#--------------------------------------------------------5.3
+def printHello():
+    print('Hello Python')
+for i in range(1,4,1):
+    printHello()
+
+
+#--------------------------------------------------------5.4
+mark=eval(input("请输入学生成绩:"))
+def grade(mark):
+    if mark>=90:
+        return "优秀"
+    elif mark>=80:
+        return "良好"
+    elif mark>=70:
+        return "中等"
+    elif mark>=60:
+        return "及格"
+    else:
+        return "不及格"
+print(grade(mark))

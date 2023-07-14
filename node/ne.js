@@ -85,17 +85,44 @@
 // app.listen(port,()=> console.log(`http://localhost:${port}`))
 
 //======================================================================2023年7月12日
+// const express = require('express')
+// const app = express()
+// app.get('/',function(req,res){
+//     throw new Error('服务器内部发生了错误！')
+//     res.send('Home Page.')
+// })
+// app.use(function (err,req,res,next){
+//     console.log('发生了错误：'+ err.message)
+//     res.send('Error!'+err.message)
+// })
+
+// app.listen(8083,()=>{
+//     console.log('http://localhost:8083')
+// })
+
+
 const express = require('express')
 const app = express()
-app.get('/',function(req,res){
-    throw new Error('服务器内部发生了错误！')
-    res.send('Home Page.')
+const apiRouter=require('./sever.js')
+app.use('/api',apiRouter)
+
+apiRouter.get('/get',(req,res)=>{
+    const query= req.query
+    res.send({
+        status:0,
+        msg:'GET请求成功',
+        data:query
+    })
 })
-app.use(function (err,req,res,next){
-    console.log('发生了错误：'+ err.message)
-    res.send('Error!'+err.message)
+apiRouter.post('/post',(req,res)=>{
+    const body= req.body
+    res.send({
+        status:0,
+        msg:'POST请求成功',
+        data:body
+    })
 })
 
 app.listen(8083,()=>{
-    console.log('http://localhost:8083')
+    console.log('http://localhost:8083/api/get')
 })

@@ -32,22 +32,6 @@
 //     })
 // })
 
-// const https = require('https');
-
-// const url = 'https://qyapi.weixin.qq.com/cgi-bin/webhook/send?key=7bf8fd07-2414-41b1-9c36-f187807d44ef';
-// const data = { 'msgtype': 'text', 
-//                 'text':{
-//                     'content':'hello'
-//                 }};
-
-// const postData = JSON.stringify(data);
-
-// const options = {
-//   method: 'POST',
-//   headers: {
-//     'Content-Type': 'application/json',
-//   }
-// };
 
 // const req = https.request(url, options, (res) => {
 //   let responseData = '';

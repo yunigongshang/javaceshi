@@ -9,6 +9,7 @@ def jiejc(a):
     find=re.findall(pattern,a)
     find_numbers=list(map(int,find))#str转为int
     if len(find_numbers)==1:
+        print(find_numbers)
         return find_numbers
     else:
         b=[]
@@ -16,28 +17,31 @@ def jiejc(a):
             b.append(i)
         return b
     
-try:
-    res=requests.post(
-        url="http://111.75.254.215:9002/jwglxt/kbcx/xskbcx_cxXsgrkb.html?gnmkdm=N2151&su=2021132697",
-        headers={
-            "Accept":"*/*",
-            "Accept-Encoding":"gzip, deflate",
-            "Accept-Language":"zh-CN,zh;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6",
-            "Content-Length":"28",
-            "Content-Type":"application/x-www-form-urlencoded;charset=UTF-8",
-            "Cookie":"JSESSIONID=8D93FF3879E5CBF93C4AB396BEC70506",
-            "User-Agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/116.0.0.0 Safari/537.36 Edg/116.0.1938.54"
-        },
-        data={
-            "xnm": "2023",
-            "xqm": "3",
-            "kzlx": "ck",
-        }
-    ).json()   #zcd  周次，xqjmc 星期，xm 姓名，cdmc 地点，kcmc 课程名称
-    r=res["kbList"]
-except:
-    print(f"没有连接网络或者Cookie过期\n程序终止")
-    sys.exit()
+# try:
+    # res=requests.post(
+    #     url="http://111.75.254.215:9002/jwglxt/kbcx/xskbcx_cxXsgrkb.html?gnmkdm=N2151&su=2021132697",
+    #     headers={
+    #         "Accept":"*/*",
+    #         "Accept-Encoding":"gzip, deflate",
+    #         "Accept-Language":"zh-CN,zh;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6",
+    #         "Content-Length":"28",
+    #         "Content-Type":"application/x-www-form-urlencoded;charset=UTF-8",
+    #         "Cookie":"JSESSIONID=8D93FF3879E5CBF93C4AB396BEC70506",
+    #         "User-Agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/116.0.0.0 Safari/537.36 Edg/116.0.1938.54"
+    #     },
+    #     data={
+    #         "xnm": "2023",
+    #         "xqm": "3",
+    #         "kzlx": "ck",
+    #     }
+    # ).json()   #zcd  周次，xqjmc 星期，xm 姓名，cdmc 地点，kcmc 课程名称
+import json
+with open('ke.json', 'r',encoding='utf-8') as file:
+   res = json.load(file)
+r=res["kbList"]
+# except:
+#     print(f"没有连接网络或者Cookie过期\n程序终止")
+#     sys.exit()
 
 # 创建
 workbook = openpyxl.Workbook()

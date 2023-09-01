@@ -7,3 +7,4 @@ router.post('/user/add',function (req,res){
     res.send('Add new user.')
 })
 module.exports = router
+console.log();

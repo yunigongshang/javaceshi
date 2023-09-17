@@ -8,8 +8,15 @@ from selenium import webdriver
 import time
 from selenium.webdriver.common.by import By
 import requests
-import json
 import os
+import sys
+ 
+ #要连接网络，最简单的检查网络的方法就是ping了
+ret = os.system("ping baidu.com -n 1")
+if ret != 0:
+    print("没有连接网络，程序即将退出")
+    time.sleep(3)
+    sys.exit()
 
 #处理单双周次和课节的数据
 def jiejc(a):
@@ -45,62 +52,59 @@ def jiejc(a):
         for i in range(find_numbers[0],find_numbers[1]+1,2):
             b.append(f'{i}-{i+1}节')
         return b
-
+    
 #-------------通过江西应用职业技术学院的教务系统获取课表数据--------
 #通过学号和年份就可以获取个人课表（任何专业都可）
+user=input('请输入学号：')
+xnm=input('请输入年份(如:2023):')
+xq=input('请输入学期(1-2):')
+if xq=='1':
+    xqm='3'
+if xq=='2':
+    xqm='12'
 
-# user=input('请输入学号：')
-# xnm=input('请输入年份(如:2023):')
+driver = webdriver.Edge()
 
-# driver = webdriver.Edge()
+# 打开登录页面
+driver.get('https://jw.jxyy.edu.cn:9002/jwglxt/xtgl/login_slogin.html')
+# 执行登录操作，输入用户名和密码
+username_input = driver.find_element(By.ID, "yhm")
+password_input = driver.find_element(By.ID, "mm")
+username_input.send_keys(user)
+password_input.send_keys('xs123456')
 
-# # 打开登录页面
-# driver.get('http://111.75.254.215:9002/jwglxt/xtgl/login_slogin.html')
-# # 执行登录操作，输入用户名和密码
-# username_input = driver.find_element(By.ID, "yhm")
-# password_input = driver.find_element(By.ID, "mm")
-# username_input.send_keys(user)
-# password_input.send_keys('xs123456')
+# 点击登录按钮
+login_button = driver.find_element(By.ID, "dl")
+login_button.click()
 
-# # 点击登录按钮
-# login_button = driver.find_element(By.ID, "dl")
-# login_button.click()
+# 等待登录完成和加载Cookie
+driver.implicitly_wait(10)
 
-# # 等待登录完成和加载Cookie
-# driver.implicitly_wait(10)
+time.sleep(3)
+# 获取所有的Cookie信息
+cookies = driver.get_cookies()
 
-# time.sleep(3)
-# # 获取所有的Cookie信息
-# cookies = driver.get_cookies()
-
-# # 关闭浏览器
-# driver.quit()
-# aa=cookies[0]
-# cok=f'{aa["name"]}={aa["value"]}'
-# res=requests.post(
-#     url=f"http://111.75.254.215:9002/jwglxt/kbcx/xskbcx_cxXsgrkb.html?gnmkdm=N2151&su={user}",
-#     headers={
-#         "Accept":"*/*",
-#         "Accept-Encoding":"gzip, deflate",
-#         "Accept-Language":"zh-CN,zh;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6",
-#         "Content-Length":"28",
-#         "Content-Type":"application/x-www-form-urlencoded;charset=UTF-8",
-#         "Cookie":cok,
-#         "User-Agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/116.0.0.0 Safari/537.36 Edg/116.0.1938.54"
-#     },
-#     data={
-#         "xnm": xnm,
-#         "xqm": "3",
-#         "kzlx": "ck",
-#     }
-# ).json()
-# r=res["kbList"]
-
-
-#通过读取json文件获取课表数据
-axx=os.path.dirname(__file__)
-with open(f'{axx}/2022.json', 'r',encoding='utf-8') as file:
-   res = json.load(file)
+# 关闭浏览器
+driver.quit()
+aa=cookies[0]
+cok=f'{aa["name"]}={aa["value"]}'
+res=requests.post(
+    url=f"https://jw.jxyy.edu.cn:9002/jwglxt/kbcx/xskbcx_cxXsgrkb.html?gnmkdm=N2151&su={user}",
+    headers={
+        "Accept":"*/*",
+        "Accept-Encoding":"gzip, deflate",
+        "Accept-Language":"zh-CN,zh;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6",
+        "Content-Length":"28",
+        "Content-Type":"application/x-www-form-urlencoded;charset=UTF-8",
+        "Cookie":cok,
+        "User-Agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/116.0.0.0 Safari/537.36 Edg/116.0.1938.54"
+    },
+    data={
+        "xnm": xnm,
+        "xqm": xq,
+        "kzlx": "ck",
+    }
+).json()
 r=res["kbList"]
 
 # 创建
@@ -161,7 +165,7 @@ for i in range(len(r)):
                             dan=f'{zcd}{xqj}'
                             data=f'课名：{r[i]["kcmc"]},老师：{r[i]["xm"]},地点：{r[i]["cdmc"]}'
                             kem.append(r[i]["kcmc"])
-                            print(data)
+                            print(data)#高逼格
                             cell = worksheet[dan]#选择单元格
                             cell.value = data  #进行写入
                             
@@ -179,7 +183,7 @@ for i in range(2, worksheet.max_row+1):#横
     worksheet.row_dimensions[i].height = 50
 for i in range(4, worksheet.max_column+1):#纵
     worksheet.column_dimensions[get_column_letter(i)].width = 17
-workbook.save(f'{res["xsxx"]["BJMC"]}{res["xsxx"]["XM"]}课表.xlsx')
+workbook.save(f'{xnm}年第{xq}学期{res["xsxx"]["BJMC"]}{res["xsxx"]["XM"]}课表.xlsx')
 # 关闭Excel文件
 workbook.close()
 print("导出成功")
